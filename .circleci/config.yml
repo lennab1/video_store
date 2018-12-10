@@ -5,14 +5,13 @@ jobs:
       - image: srcml/ubuntu_x86_64_base
     steps:
       - checkout
-      - run: cd src && make VideoStore.o
+      - run: cd src && make run
 
   test:
     docker: 
       - image: srcml/ubuntu_x86_64_base
     steps:
       - checkout
-      - run: cp bin/VideoStore.o src/
       - run: cd src && make all
 
 workflows:
