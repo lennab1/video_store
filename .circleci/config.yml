@@ -5,7 +5,7 @@ jobs:
       - image: srcml/ubuntu_x86_64_base
     steps:
       - checkout
-      - run: cd src && make VideoStore.o
+      - run: cd src && make VideoStore.o && make Movie.o && make Rental.o && make Customer.o
 
   test:
     docker: 
