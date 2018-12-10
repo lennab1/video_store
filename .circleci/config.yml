@@ -7,8 +7,13 @@ jobs:
       - checkout
       - run: cd src && make VideoStore.o
       - run: mkdir -p bin && mv src/VideoStore.o bin/
+      - run: mkdir -p obj && cp bin/VideoStore.o obj/
       - persist_to_workspace:
           root: bin
+          paths:
+            - VideoStore.o
+      - persist_to_workspace:
+          root: obj
           paths:
             - VideoStore.o
 
@@ -19,6 +24,8 @@ jobs:
       - checkout
       - attach_workspace:
           at: bin
+      - attach_workspace:
+          at: obj
       - run: cp bin/VideoStore.o src/
       - run: cd src && make all
 
