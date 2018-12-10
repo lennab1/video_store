@@ -12,7 +12,7 @@ jobs:
       - image: srcml/ubuntu_x86_64_base
     steps:
       - checkout
-      - run: cd src && make all
+      - run: cd src && make test
 
 workflows:
   version: 2
