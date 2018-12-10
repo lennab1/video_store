@@ -5,14 +5,22 @@ jobs:
       - image: srcml/ubuntu_x86_64_base
     steps:
       - checkout
-      - run: cd src && make VideoStore.o && make Movie.o && make Rental.o && make Customer.o
+      - run: cd src && make VideoStore.o
+      - run: mkdir -p bin && mv src/VideoStore.o bin/
+      - persist_to_workspace:
+          root: bin
+          paths:
+            - VideoStore.o
 
   test:
     docker: 
       - image: srcml/ubuntu_x86_64_base
     steps:
       - checkout
-      - run: cd src && make test
+      - attach_workspace:
+          at: bin
+      - run: cp bin/VideoStore.o src/
+      - run: cd src && make all
 
 workflows:
   version: 2
