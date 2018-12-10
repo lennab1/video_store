@@ -27,7 +27,7 @@ jobs:
       - attach_workspace:
           at: obj
       - run: cp bin/VideoStore.o src/
-      - run: cd src && make all
+      - run: cd src && make Movie_t.cpp Rental_t.cpp Customer_t.cpp
 
 workflows:
   version: 2
